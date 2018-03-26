@@ -1,0 +1,8 @@
+<template name="goods-item">
+  <view class="m-goods-item">
+    <image class="m-goods-item__image" src="{{original_img}}" />
+    <view class="m-goods-item__gname">{{goods_name}}</view>
+    <view class="m-goods-item__price">￥{{shop_price}}</view>
+    <view class="m-goods-item__footer">已售{{sales_sum}}件</view>
+  </view>
+</template>

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/group-buy/group-buy",
+    "pages/cart/cart",
+    "pages/me/me",
+    "pages/goods_detail/goods_detail",
+    "pages/goods_detail_group/goods_detail_group",
+    "pages/try/try"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#20232C",
+    "navigationBarTitleText": "潮人订制",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "backgroundColor": "#171A21",
+    "selectedColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabbar_home_n.png",
+        "selectedIconPath": "images/tabbar_home_s.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "images/tabbar_category_n.png",
+        "selectedIconPath": "images/tabbar_category_s.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/group-buy/group-buy",
+        "iconPath": "images/tabbar_bag_n.png",
+        "selectedIconPath": "images/tabbar_bag_s.png",
+        "text": "团购"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "images/tabbar_cart_n.png",
+        "selectedIconPath": "images/tabbar_cart_s.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/tabbar_me_n.png",
+        "selectedIconPath": "images/tabbar_me_s.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": false
+}

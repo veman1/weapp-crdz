@@ -1,0 +1,24 @@
+@import '/template/cat-item/cat-item';
+@import '/template/goods-item/goods-item';
+@import '/template/goods-item--group/goods-item--group';
+@import 'wsui';
+
+page {
+  font-size: 26rpx;
+  background-color: #f2f2f2;
+}
+
+.m-scrollbar__scroller {
+  white-space: nowrap;
+  width: 100%;
+}
+.m-scrollbar__item {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+.m-scrollbar__item:first-child {
+  margin-left: 10rpx;
+}
+.m-scrollbar__item:last-child {
+  margin-right: 10rpx;
+}

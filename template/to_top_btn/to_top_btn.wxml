@@ -1,0 +1,5 @@
+<template name="to_top_btn">
+  <view class="to_top_btn" bindtap="pageToTop">
+    <image src="/images/template_to_top.png"></image>
+  </view>
+</template>

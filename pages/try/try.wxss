@@ -1,0 +1,58 @@
+
+page {
+  background-color: #fff;
+  padding-bottom: 5%;
+}
+
+.move {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70vh;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+.move>movable-area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.move-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+}
+.move-background>image {
+  width: 100%;
+  height: 100%;
+}
+.move-front {
+  z-index: 99;
+  width: 300rpx;
+  height: 300rpx;
+}
+.move-front>image {
+  width: 100%;
+  height: 100%;
+}
+
+.g-control {
+  display: flex;
+  justify-content: center;
+}
+
+.g-footer__photograph {
+  display: block;
+  width: 220rpx;
+  height: 220rpx;
+  margin: auto;
+}

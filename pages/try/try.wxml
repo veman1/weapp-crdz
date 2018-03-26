@@ -1,0 +1,19 @@
+<view class="move">
+  <movable-area>
+    <view class="move-background">
+      <image src="{{ background }}" mode="aspectFit" /> 
+    </view>
+    <movable-view class="move-front" direction="all" scale scale-value="{{ scale }}">
+      <image src="{{front}}" mode="widthFix"/>
+    </movable-view>
+  </movable-area>
+</view>
+
+<view hidden class="g-control margin-top">
+  <button size="mini" bindtap="zoom" data-mode="in">放大</button>
+  <button size="mini" bindtap="zoom" data-mode="out">缩小</button>
+</view>
+
+<view class="g-footer margin-top">
+  <image class="g-footer__photograph" src="/images/try_photograph.png" mode="widthFix" bindtap="chooseImg" />
+</view>

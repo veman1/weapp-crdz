@@ -1,0 +1,8 @@
+<template name="goods-item--group">
+  <view class="m-goods-item--group">
+    <image class="m-goods-item--group__image" src="{{thumb}}" />
+    <view class="m-goods-item--group__gname">{{title}}</view>
+    <view class="m-goods-item--group__price">￥{{groupsprice}}</view>
+    <view class="m-goods-item--group__footer">已团{{groupnum}}件</view>
+  </view>
+</template>

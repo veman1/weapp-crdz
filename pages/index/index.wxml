@@ -1,0 +1,61 @@
+<import src="/template/cat-item/cat-item" />
+<import src="/template/goods-item/goods-item" />
+<import src="/template/goods-item--group/goods-item--group" />
+
+<view class="g-nav">
+  <view class="g-nav-swiper">
+    <swiper class="m-swiper" indicator-dots indicator-active-color='#0D0D0D' indicator-color='#fff' circular>
+      <swiper-item wx:for="{{ carousel }}">
+        <image class="m-swiper__image" src="{{item.image}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="g-nav-catbar">
+    <view class='m-scrollbar'>
+      <scroll-view scroll-x class="m-scrollbar__scroller">
+        <block wx:for="{{ category }}">
+          <view class="m-scrollbar__item" bindtap="switchCategory" data-index="{{ index }}">
+            <template is="cat-item" data="{{ ...item }}" />
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="g-group">
+  <view class="m-titlebar">
+    <view class="m-titlebar__title">优惠团购</view>
+    <view class="m-titlebar__subtitle">GROUP PURCHASE</view>
+    <navigator class="m-titlebar__ft" hover-class='none' url="/pages/group-buy/group-buy" open-type='switchTab'>MORE</navigator>
+  </view>
+  <view class="m-content-banner">
+    <image class="m-content-banner__img" src="/images/test/ad.png" />
+  </view>
+  <view class="g-scroll-list margin-top">
+    <view class='m-scrollbar'>
+      <scroll-view scroll-x class="m-scrollbar__scroller">
+        <block wx:for="{{ data.groupBy }}">
+          <navigator class="m-scrollbar__item" hover-class='none' url="/pages/goods_detail_group/goods_detail_group?goods_id={{item.id}}">
+            <template is="goods-item--group" data="{{...item}}" />
+          </navigator>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="g-recommend">
+  <view class="m-titlebar">
+    <view class="m-titlebar__title">热门推荐</view>
+    <view class="m-titlebar__subtitle">RECOMMEND</view>
+    <navigator class="m-titlebar__ft" hover-class='none' url="/pages/group-buy/group-buy" open-type='switchTab'>MORE</navigator>
+  </view>
+  <view class="g-goods-list">
+    <block wx:for="{{ data.newGoods }}">
+      <navigator class="g-goods-item" hover-class='none' url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
+        <template is="goods-item" data="{{ ...item }}" />
+      </navigator>
+    </block>
+  </view>
+</view>

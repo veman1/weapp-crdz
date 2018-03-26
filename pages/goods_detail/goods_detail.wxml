@@ -1,0 +1,180 @@
+<import src="/template/to_top_btn/to_top_btn" />
+<import src="/wxParse/wxParse.wxml" />
+<template is="to_top_btn" />
+
+<view class="bottom">
+  <view class="bottom-icon" bindtap="addCollect" data-id="{{goods.goods.goods_id}}">
+    <image wx:if="{{ is_collection }}" src="/images/detail_collect_n.png" mode="aspectFit"></image>
+    <image wx:else src="/images/detail_collect_c.png" mode="aspectFit"></image>
+    <text>收藏</text>
+  </view>
+  <view class="bottom-icon">
+    <contact-button style="bottom:50%;right:50%"></contact-button>
+    <contact-button style="bottom:50%;left:50%"></contact-button>
+    <contact-button style="top:50%;left:50%"></contact-button>
+    <contact-button style="top:50%;right:50%"></contact-button>
+    <image src="/images/detail_msg.png" mode="aspectFit"></image>
+    <text>联系客服</text>
+  </view>
+  <view class="bottom-icon" bindtap="clickToCart">
+    <image src="/images/detail_cart.png" mode="aspectFit"></image>
+    <text>购物车</text>
+  </view>
+  <view class="btn addCart" bindtap="clickBottomAddCart">加入购物车</view>
+  <view class="btn buy" bindtap="clickBottomBuy">立即购买</view>
+</view>
+
+<!-- # 遮罩层 【隐藏】 -->
+<view class="mask {{ popup_show ? 'show' : '' }}" bindtap="clickMask"></view>
+
+<!-- # 底部弹窗 【隐藏】 -->
+<view class="operateBox {{ popup_show ? 'active' : '' }}">
+  <!-- 关闭按钮 -->
+  <image src="/images/detail_del.png" bindtap="clickPopupClose"></image>
+  <!-- 底部弹窗头部 -->
+  <view class="operateBox-info">
+    <image src="{{goods.goods.original_img}}"></image>
+    <text>{{goods.goods.goods_name}}</text>
+    <text class="price">￥{{price}}</text>
+  </view>
+  <!-- 规格选择 -->
+  <view class="spec">
+    <view wx:for-index="pos" wx:for="{{goods.goods.goods_spec_list}}" class="view-sub-prop">
+      <text class="text-prop">{{item[0].spec_name}}</text>
+      <view class="view-btns">
+        <block wx:for="{{item}}" wx:for-item="value_item">
+          <text bindtap="propClick" data-index="{{pos}}" data-pos="{{index}}" class="view-btns-text {{ value_item.isClick ? 'select' : '' }}">{{value_item.item}}</text>
+        </block>
+      </view>
+    </view>
+    <view class="chooseNum">
+      <view class="chooseNum-text">
+        <text>购买数量：</text>
+        <text style="font-size:22rpx;color:#999">剩余{{goods.goods.store_count}}件</text>
+      </view>
+      <view class="stepper">
+        <text class="{{minusStatuses[index]}} " data-index="{{index}} " bindtap="bindMinus">-</text>
+        <input type="Number" bindinput="inputNum" bindchange="inputChange" value="{{goods_num}}" />
+        <text class="normal" data-index="{{index}} " bindtap="bindPlus">+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹窗脚部 -->
+  <view class="popup-ft">
+    <view class="total">
+      <text>合计:</text>
+      <text class="hl">￥{{ price * goods_num }}</text>
+    </view>
+    <view class="btn addCart" bindtap="clickPopupAddCart">加入购物车</view>
+    <view class="btn buy" bindtap="clickPopupBuy">立即购买</view>
+  </view>
+</view>
+
+<!-- # 轮播图 -->
+<swiper id="swiper" indicator-dots>
+  <block wx:for="{{ goods.gallery }}">
+    <swiper-item>
+      <image src="{{ item.image_url }}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- # 标题 -->
+<view class="title-box">
+  <view class="title">
+    <text class="goods_name">{{goods.goods.goods_name}}</text>
+    <navigator class="title-pull-right" hover-class='none' url="/pages/try/try?">
+      <view class="u-icon">
+        <image src="/images/detail_cam.png" mode="aspectFit" />
+        <text>试镜</text>
+      </view>
+    </navigator>
+  </view>
+  <view class="desc">{{goods.goods.goods_remark}}</view>
+  <!-- 如果不是折扣商品（普通商品） -->
+  <block wx:if="{{ goods.goods.prom_type == 0 }}">
+    <view class="price">￥{{goods.goods.shop_price}}
+      <text style='color: #999;font-size:26rpx;font-weight:normal;float:right'>销量:{{goods.goods.sales_sum}}</text>
+    </view>
+  </block>
+  <!-- 如果是折扣商品 -->
+  <block wx:if="{{ goods.goods.prom_type == 1 }}">
+    <view class="discount">
+      <view>
+        <text class="discount-scale">{{ active.cheap }}折</text>
+        <text class="ori">￥{{ goods.goods.shop_price }}</text>
+      </view>
+      <view class="discount-price">折扣优惠价 ￥{{ active.price }}</view>
+      <view class="discount-deadline">截止：{{ active.end_time }}</view>
+    </view>
+  </block>
+
+</view>
+
+<!-- # 已选择规格 -->
+<view class="selected_bar" bindtap="clickSelectedBar">
+  <text class="hd">规格</text>
+  <view class="bd">
+    <text>已选择</text>
+    <block wx:for="{{goods.goods.goods_spec_list}}">
+      <block wx:for="{{ item }}" wx:if="{{ item.isClick }}">
+        <text>{{ item.item }}</text>
+      </block>
+    </block>
+  </view>
+  <image class="arrow" src="/images/public_arrow.png" mode="widthFix"></image>
+</view>
+
+<!-- # 商店 -->
+<view class="shop-box" wx:if="{{goods.goods.store_info != ''}}">
+  <!-- 商店信息 -->
+  <view class="shop">
+    <image class="img" src="{{goods.goods.store_info.store_logo}}"></image>
+    <view class="main">
+      <text class="name">{{goods.goods.store_info.store_name}}</text>
+      <text class="desc">{{goods.goods.store_info.seo_description}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- # 评价 -->
+<view class="comment">
+  <!-- 评价头部 -->
+  <view class="header">
+    <view class="hd">
+      <text class="hd-hd">评价</text>
+    </view>
+    <view class="ft" bindtap='clickMoreComments'>
+      <text>查看全部{{comment_sum}}条评价</text>
+      <image src="/images/public_arrow.png" mode="widthFix"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{ comment }}" class="list">
+    <view wx:for="{{comment}}" class="commentItem">
+      <!-- 单个评价头部 -->
+      <view class="comment-headline">
+        <view class="comment-headline-left">
+          <image src="{{ item.head_pic }}"></image>
+          <text>{{item.nick_name}}</text>
+        </view>
+        <text class="comment-headline-right">{{ item.add_time }}</text>
+      </view>
+      <!-- 单个评价内容 -->
+      <text>{{item.content}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!comment}}" class="comment-ifNone">
+    <text>暂无评价</text>
+  </view>
+</view>
+
+<!-- # 图文详情 -->
+<view class="detail-box">
+  <view class="header">图文详情</view>
+  <view class="main">
+    <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+  </view>
+</view>

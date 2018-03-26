@@ -1,0 +1,13 @@
+<import src="/template/cat-item/cat-item" />
+
+<view class="g-catbar">
+  <view class='m-scrollbar'>
+    <scroll-view scroll-x class="m-scrollbar__scroller">
+      <block wx:for="{{ catbar.array }}">
+        <view class="m-scrollbar__item" bindtap="$switcherTap" data-index="{{ index }}">
+          <template is="cat-item" data="{{ current: catbar.current === index ? true : false,...item }}" />
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

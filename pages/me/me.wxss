@@ -1,0 +1,156 @@
+
+
+page {
+  background: #f7f7f7;
+}
+
+.g-header {
+    background-image: linear-gradient(to right,#FF9994 0,#FD657C 100%);
+    overflow: hidden;
+}
+.g-userbox {
+    margin-top: 30rpx;
+    padding: 0 30rpx;
+}
+.g-infolist {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userbox {
+    position: relative;
+    min-height: 100rpx;
+    padding: 0 0 0 100rpx;
+    color: #fff;
+}
+.userbox__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+.userbox__title {
+    font-size: 1.2em;
+}
+.userbox__subtitle {
+    display: flex;
+    margin-top: 10rpx;
+}
+
+.infobox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30rpx;
+    width: 250rpx;
+    height: 80rpx;
+    background-color: #FEB2B2;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #630000;
+}
+.infobox__value {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.infobox__key {}
+
+/*user info*/
+
+.userinfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 300rpx;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  border: 3px #ffffff solid;
+}
+
+.userinfo-nickname {
+  color: #000000;
+  font-size: 28rpx;
+}
+
+/* # 查看订单 .order-area */
+.order-area {
+  background: white;
+}
+.order-area .header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.order-area .header .hd {
+  color: #333;
+}
+.order-area .header .ft text {
+  color: #bbb;
+  display: inline-block;
+  vertical-align: middle;
+}
+.order-area .header .ft image {
+  vertical-align: middle;
+  width: 15rpx;
+  height: 15rpx;
+  margin-left: 10rpx;
+}
+.order-area .list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 0;
+  padding: 20rpx 0;
+}
+
+.order-area .list .order {
+  width: 33.3%;
+  text-align: center;
+}
+
+.order-area .list .order image {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.order-area .list .order text {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/*menu list*/
+
+.menu .item {
+  position: relative;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+  font-size: 30rpx;
+  color: #333;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.menu .item .arrow {
+  position: absolute;
+  right: 20rpx;
+  width: 15rpx;
+}
+
+/* # 技术支持 */
+#footer-tech{
+  width: 150rpx;
+  display: block;
+  margin: 50rpx auto;
+}

@@ -1,0 +1,5 @@
+<template name="cat-item">
+  <view class="u-cat-item {{ current ? 'u-cat-item--current' : '' }}">
+    <image src="{{ image }}" />
+  </view>
+</template>

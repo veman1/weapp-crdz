@@ -1,0 +1,17 @@
+.to_top_btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 2;
+  bottom: 150rpx;
+  right: 30rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+.to_top_btn image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

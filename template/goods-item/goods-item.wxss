@@ -1,0 +1,21 @@
+.m-goods-item {
+    width: 337.5rpx;
+}
+.m-goods-item__image {
+    display: block;
+    width: 337.5rpx;
+    height: 337.5rpx;
+}
+.m-goods-item__gname {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.m-goods-item__price {
+    color: #FA1733;
+    white-space: nowrap;
+}
+.m-goods-item__footer {
+  color: #aaa;
+  font-size: .8em;
+}

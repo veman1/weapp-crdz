@@ -1,0 +1,5 @@
+
+.g-catbar {
+  background-color: #fff;
+  padding-top: 20rpx;
+}
