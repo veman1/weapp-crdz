@@ -3,3 +3,53 @@
   background-color: #fff;
   padding-top: 20rpx;
 }
+.g-goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 25rpx;
+  margin: 20rpx 0 0;
+}
+.g-goods-item {
+  margin: 0 25rpx 25rpx 0;
+}
+
+
+/* 标签栏 */
+.tabs-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+  border-top:1rpx solid #E3E3E3; 
+}
+.tab {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  text-align: center;
+  width: 50%;
+}
+.tab-active {
+  color: #F7D24C;
+}
+.tab image {
+  width: 16rpx;
+  height: 16rpx;
+  margin-left: 10rpx;
+}
+.arrow {
+  position: relative;
+  bottom: 5rpx;
+  display: inline-block;
+  width: 10rpx;
+  height: 10rpx;
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
+  transform: rotate(-135deg);
+  margin-left: 10rpx;
+}
+.arrow.up {
+  transform: rotate(45deg);
+  border-color: #F7D24C;
+}

@@ -1,4 +1,5 @@
 <import src="/template/cat-item/cat-item" />
+<import src="/template/goods-item/goods-item" />
 
 <view class="g-catbar">
   <view class='m-scrollbar'>
@@ -10,4 +11,38 @@
       </block>
     </scroll-view>
   </view>
+</view>
+
+<view class="g-filter-bar margin-top">
+  <view class="tabs-box">
+
+    <view bindtap="tapMainMenu" data-index="1" class="tab {{sortStatus[0]==1?'tab-active':''}}">
+      <text>价格</text>
+      <image wx:if="{{sortStatus[0]==1&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+      <image wx:elif="{{sortStatus[0]==1&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+    </view>
+
+    <view bindtap="tapMainMenu" data-index="2" class="tab {{sortStatus[0]==2?'tab-active':''}}">
+      <text>销量</text>
+      <image wx:if="{{sortStatus[0]==2&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+      <image wx:elif="{{sortStatus[0]==2&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+    </view>
+
+    <view bindtap="tapMainMenu" data-index="3" class="tab {{sortStatus[0]==3?'tab-active':''}}">
+      <text>最新</text>
+      <image wx:if="{{sortStatus[0]==3&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+      <image wx:elif="{{sortStatus[0]==3&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+    </view>
+  </view>
+</view>
+
+<view class="g-goods-list bg-white padding-top">
+  <block wx:for="{{ goods }}">
+    <navigator class="g-goods-item" hover-class='none' url="/pages/goods_detail_group/goods_detail_group?goods_id={{item.id}}">
+      <template is="goods-item" data="{{ ...item }}" />
+    </navigator>
+  </block>
 </view>

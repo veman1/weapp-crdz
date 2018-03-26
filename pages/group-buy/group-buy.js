@@ -1,66 +1,32 @@
-// pages/group-buy/group-buy.js
-Page({
-
-  /**
-   * 页面的初始数据
-   */
+const app = getApp()
+app.Page({
   data: {
-  
+    loding: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this._loadData();
+    this.getUserId()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  getUserId() {
+    app.globalData.userInfo && this.setData({
+      user_id: app.globalData.userInfo.user_id || ''      
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  _loadData: function () {
+    var that = this;
+    app.server.getJSON('/Group/grouplist', function (res) {
+      that.setData({
+        lists: res.data.result
+      })
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  toTopTap: function () {
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+});

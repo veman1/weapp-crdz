@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -48,6 +48,11 @@
 					"name": "商品详情",
 					"pathName": "pages/goods_detail/goods_detail",
 					"query": "goods_id=66"
+				},
+				{
+					"id": -1,
+					"name": "拼团",
+					"pathName": "pages/group-buy/group-buy"
 				}
 			]
 		}

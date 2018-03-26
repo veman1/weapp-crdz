@@ -1,1 +1,94 @@
-/* pages/group-buy/group-buy.wxss */
+@import '/template/to_top_btn/to_top_btn';
+
+page {
+  background-color: #F7F7F7;
+}
+
+/* # 列表 */
+#list {
+  margin: 20rpx 0 0;
+}
+#list .item {
+  position: relative;
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 280rpx;
+  width: 710rpx;
+  padding: 30rpx 20rpx 30rpx 260rpx;
+  margin: 0 auto 20rpx;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px -2px #ddd;
+}
+#list .item .thumb {
+  position: absolute;
+  z-index: 2;
+  top: 30rpx;
+  left: 20rpx;
+  width: 220rpx;
+  height: 220rpx;
+}
+#list .item {
+  line-height: 1.6;
+}
+#list .item .name {
+  font-size: 28rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#list .item .desc {
+  color: #666;
+  font-size: 28rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#list .item .sales_count {
+  color: #666;
+  font-size: 28rpx;
+  display: block;
+}
+#list .item .sales_count .hl {
+    color: #F35150;
+}
+#list .item .price_ori {
+    display: block;
+    color: #999;
+}
+#list .item .price_ori .num {
+    text-decoration: line-through;
+}
+#list .item .priceBox {
+  display: block;
+  color: #F35150;
+}
+#list .item .priceBox .price {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+#list .item .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 2.5em;
+    position: absolute;
+    bottom: 30rpx;
+    right: 20rpx;
+    color: #fff;
+    background-color: #F35150;
+    border-radius: 3px;
+}
+
+/* # 没有结果提示 */
+.view-empty {
+  margin: 20rpx 0;
+}
+.view-empty text {
+  display: block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #aaa;
+}

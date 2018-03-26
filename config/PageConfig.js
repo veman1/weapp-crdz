@@ -1,5 +1,6 @@
 
 const data = {
+  host: 'https://yuantou.woshangapp.com/'
 }
 
 /**
