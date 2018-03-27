@@ -1,6 +1,7 @@
 @import '/template/cat-item/cat-item';
 @import '/template/goods-item/goods-item';
 @import '/template/goods-item--group/goods-item--group';
+@import '/template/to_top_btn/to_top_btn';
 @import 'wsui';
 
 page {

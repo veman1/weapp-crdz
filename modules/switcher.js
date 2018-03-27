@@ -16,8 +16,8 @@ export default {
     }
     _this.$switcherTap = e => {
       tap(e)
-      let current = e.currentTarget.dataset.index
-      _this.$switcherSwitch(current)
+      // let current = e.currentTarget.dataset.index
+      // _this.$switcherSwitch(current)
     }
   }
 }

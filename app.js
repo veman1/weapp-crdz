@@ -1,19 +1,15 @@
 import PageConfig from 'config/PageConfig'
-import server from 'utils/server'
+import Server from 'utils/server'
 import _data from '_data/_data'
 
 App({
   _data,
-  server,
-
   onLaunch() {
     this.getOpenId()
   },
+  server: new Server('https://chao.woshangfw.cn/WXAPI'),
 
   globalData: {
-    category: {
-      current: 0
-    },
   },
 
   Page(obj) {
@@ -25,11 +21,6 @@ App({
       title,
       showCancel: false
     })
-  },
-
-  switchCategory(current, cb) {
-    this.globalData.category.current = current
-    cb && cb()
   },
 
   getOpenId() {
@@ -87,5 +78,12 @@ App({
       }
     })
   },
+
+  fetchCategory(succ) {
+    this.server.getJSON('/Goods/goodsCategoryList?parent_id=84', (res) => {
+      this.globalData.category = res.data.result
+      succ && succ(res.data.result)
+    });
+  }
 
 })

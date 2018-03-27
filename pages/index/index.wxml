@@ -1,12 +1,13 @@
 <import src="/template/cat-item/cat-item" />
 <import src="/template/goods-item/goods-item" />
 <import src="/template/goods-item--group/goods-item--group" />
+<import src="/template/to_top_btn/to_top_btn" />
 
 <view class="g-nav">
   <view class="g-nav-swiper">
     <swiper class="m-swiper" indicator-dots indicator-active-color='#0D0D0D' indicator-color='#fff' circular>
-      <swiper-item wx:for="{{ carousel }}">
-        <image class="m-swiper__image" src="{{item.image}}"></image>
+      <swiper-item wx:for="{{ data.result.ad }}">
+        <image class="m-swiper__image" src="{{item.ad_code}}"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -14,7 +15,7 @@
     <view class='m-scrollbar'>
       <scroll-view scroll-x class="m-scrollbar__scroller">
         <block wx:for="{{ category }}">
-          <view class="m-scrollbar__item" bindtap="switchCategory" data-index="{{ index }}">
+          <view class="m-scrollbar__item" bindtap="chooseCategory" data-cid="{{ item.id }}">
             <template is="cat-item" data="{{ ...item }}" />
           </view>
         </block>
@@ -30,7 +31,7 @@
     <navigator class="m-titlebar__ft" hover-class='none' url="/pages/group-buy/group-buy" open-type='switchTab'>MORE</navigator>
   </view>
   <view class="m-content-banner">
-    <image class="m-content-banner__img" src="/images/test/ad.png" />
+    <image class="m-content-banner__img" src="{{ data.result.ad[0].ad_code }}" />
   </view>
   <view class="g-scroll-list margin-top">
     <view class='m-scrollbar'>
@@ -52,10 +53,12 @@
     <navigator class="m-titlebar__ft" hover-class='none' url="/pages/group-buy/group-buy" open-type='switchTab'>MORE</navigator>
   </view>
   <view class="g-goods-list">
-    <block wx:for="{{ data.newGoods }}">
+    <block wx:for="{{ data.recommendGoods }}">
       <navigator class="g-goods-item" hover-class='none' url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
         <template is="goods-item" data="{{ ...item }}" />
       </navigator>
     </block>
   </view>
 </view>
+
+<template is="to_top_btn" />

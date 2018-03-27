@@ -1,12 +1,13 @@
 <import src="/template/cat-item/cat-item" />
 <import src="/template/goods-item/goods-item" />
+<import src="/template/to_top_btn/to_top_btn" />
 
 <view class="g-catbar">
   <view class='m-scrollbar'>
     <scroll-view scroll-x class="m-scrollbar__scroller">
-      <block wx:for="{{ catbar.array }}">
-        <view class="m-scrollbar__item" bindtap="$switcherTap" data-index="{{ index }}">
-          <template is="cat-item" data="{{ current: catbar.current === index ? true : false,...item }}" />
+      <block wx:for="{{ category }}">
+        <view class="m-scrollbar__item" bindtap="tapCategory" data-cid="{{ item.id }}">
+          <template is="cat-item" data="{{ ...item,current: item.id === categoryId ? true : false }}" />
         </view>
       </block>
     </scroll-view>
@@ -16,33 +17,57 @@
 <view class="g-filter-bar margin-top">
   <view class="tabs-box">
 
-    <view bindtap="tapMainMenu" data-index="1" class="tab {{sortStatus[0]==1?'tab-active':''}}">
+    <view bindtap="tapSort" data-sort="{{ 1 }}" class="tab {{sort === 1 ?'tab-active':''}}">
       <text>价格</text>
-      <image wx:if="{{sortStatus[0]==1&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
-      <image wx:elif="{{sortStatus[0]==1&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
-      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+      <view>
+        <block wx:if="{{ sort === 1 && mode === 0 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+        </block>
+        <block wx:if="{{ sort === 1 && mode === 1 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+        </block>
+      </view>
     </view>
 
-    <view bindtap="tapMainMenu" data-index="2" class="tab {{sortStatus[0]==2?'tab-active':''}}">
+    <view bindtap="tapSort" data-sort="{{ 2 }}" class="tab {{sort === 2 ?'tab-active':''}}">
       <text>销量</text>
-      <image wx:if="{{sortStatus[0]==2&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
-      <image wx:elif="{{sortStatus[0]==2&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
-      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+      <view>
+        <block wx:if="{{ sort === 2 && mode === 0 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+        </block>
+        <block wx:if="{{ sort === 2 && mode === 1 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+        </block>
+      </view>
     </view>
 
-    <view bindtap="tapMainMenu" data-index="3" class="tab {{sortStatus[0]==3?'tab-active':''}}">
+    <view bindtap="tapSort" data-sort="{{ 3 }}" class="tab {{sort === 3 ?'tab-active':''}}">
       <text>最新</text>
-      <image wx:if="{{sortStatus[0]==3&&sortStatus[1]==0}}" mode="widthFix" src="/images/filterbar_sort_down.png"></image>
-      <image wx:elif="{{sortStatus[0]==3&&sortStatus[1]==1}}" mode="widthFix" src="/images/filterbar_sort_up.png"></image>
-      <image wx:else mode="widthFix" src="/images/filterbar_sort_default.png"></image>
+      <view>
+        <block wx:if="{{ sort === 3 && mode === 0 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_down.png"></image>
+        </block>
+        <block wx:if="{{ sort === 3 && mode === 1 }}">
+          <image mode="widthFix" src="/images/filterbar_sort_up.png"></image>
+        </block>
+      </view>
     </view>
   </view>
 </view>
 
-<view class="g-goods-list bg-white padding-top">
-  <block wx:for="{{ goods }}">
-    <navigator class="g-goods-item" hover-class='none' url="/pages/goods_detail_group/goods_detail_group?goods_id={{item.id}}">
-      <template is="goods-item" data="{{ ...item }}" />
-    </navigator>
+<view class="g-goods">
+  <block wx:if="{{ goods.length }}">
+    <view class="g-goods-list bg-white padding-top">
+      <block wx:for="{{ goods }}">
+        <navigator class="g-goods-item" hover-class='none' url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
+          <template is="goods-item" data="{{ ...item,host }}" />
+        </navigator>
+      </block>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="g-goods-note">该分类下暂无商品</view>
   </block>
 </view>
+
+<template is="to_top_btn" />

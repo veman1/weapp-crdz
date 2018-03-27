@@ -1,127 +1,73 @@
 import Switcher from '../../modules/switcher'
 const app = getApp()
-var categoryId
-var gsort = "shop_price";
-var asc = "desc";
 
 app.Page({
   data: {
-    goods: app._data.goods,
-    categoryId: '1',
-    sortStatus: [0, 0],
-    sort: [
-      ['sort-asc'],
-      ['shop_price-desc', 'shop_price-asc'],
-      ['sales_sum-desc', 'sales_sum-asc'],
-      ['on_time-desc', 'on_time-asc'],
-    ],
+    goods: []
   },
   onLoad(o) {
-    Switcher.init(this, 'catbar', app._data.category, e => {
-      this.switchCategory(e.currentTarget.dataset.index)
-    })      
-    categoryId = o.categoryId;
-    // this.getGoods(categoryId, 0, this.data.sort[0][0]);
-  },
-  onShow() {
-    this.switchCategory(app.globalData.category.current)
-  },
-
-  tapMainMenu: function (e) {
-    var index = parseInt(e.currentTarget.dataset.index);
-    var sortStatus = this.data.sortStatus;
-    if (sortStatus[0] !== index) {
-      sortStatus = [index, 0]
-    } else {
-      sortStatus[1] = sortStatus[1] == 0 ? 1 : 0;
-    }
+    Switcher.init(this, 'catbar', null, e => {
+      if (this.switchCategory(e.currentTarget.dataset.cid)) {
+        this.fetchGoods(this.data.categoryId, 0, this.data.sort || 0, this.data.mode || 0)
+        this.setData({ goods: [] })
+      }
+    })
     this.setData({
-      goods: [],
-      sortStatus: sortStatus,
-      tab: index,
-      filterShown: false,
-      maskShown: false
-    });
-    if (!keywords)
-      this.getGoods(categoryId, 0, this.data.sort[sortStatus[0]][sortStatus[1]]);
-    else
-      this.getGoodsByKeywords(keywords, 0, this.data.sort[index]);
-  },
-  // tapMainMenu: function (e) {
-  //   var index = parseInt(e.currentTarget.dataset.index);
-  //   var sortStatus = this.data.sortStatus;
-  //   var sort = this.data.sort[sortStatus[0]][sortStatus[1]]
-  //   var sort_mode = sort.split('-')[0]
-  //   var sort_asc = sort.split('-')[1]
-  //   if (sortStatus[0] !== index) {
-  //     sortStatus = [index, 0]
-  //   } else {
-  //     sortStatus[1] = sortStatus[1] == 0 ? 1 : 0;
-  //   }
-  //   this.setData({
-  //     sortStatus: sortStatus,
-  //     tab: index,
-  //     filterShown: false,
-  //     maskShown: false
-  //   });
-  //   this.fetchGoods(this.data.categoryId, 0, sort_mode, sort_asc, (res) => {
-  //     this.setData({
-  //       goods: res.data.reult.goods_list
-  //     })
-  //   });
-  // },
-  switchCategory(current) {
-    current !== this.data.catbar.current && app.switchCategory(current, () => {
-      this.$switcherSwitch(current)      
-      this.getGoods(categoryId, 0, this.data.sort[sortStatus[0]][sortStatus[1]])
+      category: app.globalData.category || []
     })
   },
-
-  getGoods: function (category, pageIndex, sort) {
-    console.log('sort:', sort);
-    var that = this;
-    var sortArray = sort.split('-');
-    gsort = sortArray[0];
-    asc = sortArray[1];
-    app.server.getJSON('/Goods/goodsList/id/' + category + "/sort/" + sortArray[0] + "/sort_asc/" + sortArray[1] + "/p/" + pageIndex, function (res) {
-      var res = res;
-      console.log('res:', res);
-      // success
-      var newgoods = res.data.result.goods_list
-
-      var ms = that.data.goods
-      for (var i in newgoods) {
-        ms.push(newgoods[i]);
-      }
-
-      if (ms.length == 0) {
-        that.setData({
-          empty: true
-        });
-      }
-      else
-        that.setData({
-          empty: false
-        });
-      // wx.stopPullDownRefresh();
-
-      that.setData({
-        goods: ms,
-        loding: false
-      });
-
-      // wx.setNavigationBarTitle({
-      //   title: res.data.result.catename
-      // });
-    });
-
+  onShow() {
+    if (this.switchCategory(this.data.categoryId)) {
+      this.fetchGoods(this.data.categoryId, 0, this.data.sort || 0, this.data.mode || 0)
+      this.setData({ 
+        goods: [],
+        pageIndex: 0,
+      })
+      this.data.pageIndex = 0
+    }
   },
-  // fetchGoods(categoryId, pageIndex, sort, sort_asc, success = () => {}) {
-  //   app.server.getJSON({
-  //     url: '/Goods/goodsList/id/' + categoryId + "/sort/" + sort + "/sort_asc/" + sort_asc + "/p/" + pageIndex,
-  //     success: (res) => {
-  //       success(res)
-  //     }
-  //   })
-  // },
+  tapSort(e) {
+    this.setData({
+      sort: e.currentTarget.dataset.sort,
+      mode: this.data.sort === e.currentTarget.dataset.sort ? (1 - this.data.mode) % 2 : 0,
+      goods: [],
+    })
+    this.fetchGoods(this.data.categoryId, 0, this.data.sort, this.data.mode)
+  },
+  tapCategory(e) {
+    let cid = e.currentTarget.dataset.cid
+    this.fetchGoods(cid, 0, this.data.sort || 0, this.data.mode || 0)
+    app.globalData.categoryId = cid
+    this.setData({
+      categoryId: cid,
+      goods: []
+    })
+  },
+  onReachBottom() {
+    this.fetchGoods(this.data.categoryId, ++this.data.pageIndex, this.data.sort, this.data.mode)
+  },
+
+  switchCategory(cid) {
+    if (app.globalData.categoryId === cid) {
+      return 0
+    } else {
+      this.setData({ categoryId: app.globalData.categoryId })
+      return 1
+    }
+  },
+  fetchGoods(cid, pindex, sort, mode) {
+    const sorts = ['sort', 'shop_price', 'sales_sum', 'on_time',]
+    const modes = ['desc', 'asc']
+    this.data.pageIndex = pindex
+    this.data.sort = sort
+    this.data.mode = mode
+    app.server.getJSON({
+      url: '/Goods/goodsList/id/' + cid + "/sort/" + sorts[sort] + "/sort_asc/" + modes[mode] + "/p/" + pindex,
+      success: (res) => {
+        this.setData({
+          goods: this.data.goods.concat(res.data.result.goods_list || [])
+        })
+      }
+    })
+  },
 })

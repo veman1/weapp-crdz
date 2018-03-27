@@ -1,6 +1,6 @@
 
 const data = {
-  host: 'https://yuantou.woshangapp.com/'
+  host: 'https://chao.woshangfw.cn'
 }
 
 /**
@@ -30,7 +30,7 @@ const methods = {
 
 
 
-export default class PageConfig {
+export default class {
     constructor(obj) {
         Object.assign(this, {data:{}}, methods, obj)
         Object.assign(this.data, data)

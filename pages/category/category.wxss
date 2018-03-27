@@ -12,26 +12,35 @@
 .g-goods-item {
   margin: 0 25rpx 25rpx 0;
 }
+.g-goods-note {
+  color: #666;
+  font-size: 26rpx;
+  text-align: center;
+  margin: 30rpx 0 0;
+}
 
 
 /* 标签栏 */
 .tabs-box {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   background: #fff;
   width: 100%;
   height: 90rpx;
-  border-bottom: 1rpx solid #e0e0e0;
-  border-top:1rpx solid #E3E3E3; 
 }
 .tab {
-  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   font-size: 28rpx;
   text-align: center;
-  width: 50%;
+  color: #999;
 }
 .tab-active {
-  color: #F7D24C;
+  color: #000;
+}
+.tab>view {
+  width: 30rpx;
 }
 .tab image {
   width: 16rpx;
