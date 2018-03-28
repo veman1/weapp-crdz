@@ -34,6 +34,9 @@ app.Page({
   onReachBottom() {
     this.fetchGoods(this.data.categoryId, ++this.data.pageIndex, this.data.sort, this.data.mode)
   },
+  onReachBottom() {
+    this.fetchGoods(this.data.categoryId, ++this.data.pageIndex, this.data.sort, this.data.mode)
+  },
 
   /**
    * fetchGoods
