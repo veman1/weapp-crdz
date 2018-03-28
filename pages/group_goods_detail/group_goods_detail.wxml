@@ -16,6 +16,12 @@
 <view class="title-box">
   <view class="title">
     <text class="goods_name">{{goods.goods.title}}</text>
+    <navigator class="title-pull-right" hover-class='none' url="/pages/try/try?">
+      <view class="u-icon">
+        <image src="/images/detail_cam.png" mode="aspectFit" />
+        <text>试镜</text>
+      </view>
+    </navigator>
   </view>
   <view class="desc">{{goods.goods.description}}</view>
   <view class="price">￥{{goods.goods.groupsprice}}</view>

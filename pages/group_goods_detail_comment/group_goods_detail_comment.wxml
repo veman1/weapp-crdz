@@ -1,0 +1,32 @@
+<!-- # 返回顶部按钮 【固定】 -->
+<import src="/template/to_top_btn/to_top_btn" />
+<template is="to_top_btn" />
+
+<!-- # 评论列表 -->
+<view class="list">
+  <view wx:for="{{list}}" class="commentItem">
+    <!-- 单个评价头部 -->
+    <view class="comment-headline">
+      <view class="comment-headline-left">
+        <image src="{{ item.ava }}"></image>
+        <text>{{item.user_name}}</text>
+      </view>
+      <text class="comment-headline-right">{{ item.time }}</text>
+    </view>
+    <!-- 单个评价内容 -->
+    <text>{{item.content}}</text>
+    <!-- 单个评价图片 -->
+    <block wx:if="{{ item.hasImgs }}">
+      <view class="imgs">
+        <block wx:for="{{ item.imgs }}" wx:for-item="imgs_item">
+          <image src="{{ imgs_item }}" bindtap="clickCommentImg" data-urls="{{ item.imgs }}" data-url="{{ imgs_item }}"></image>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- # 加载中提示 -->
+<block wx:if="{{ loading_show }}">
+  <view class="loading">加载中..</view>
+</block>

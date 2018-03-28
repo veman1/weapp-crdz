@@ -1,0 +1,43 @@
+<loading hidden="{{hiddenLoading}}">正在加载</loading>
+
+<view hidden='{{viewshow}}'>
+<view id="panel">
+
+    <view class="bar">
+        <view class="hd">订单编号</view>
+        <view>{{loadData.order.orderno}}</view>
+    </view>
+
+    <view class="bar">
+        <view class="hd">订单金额</view>
+        <view class="sum">￥{{loadData.money}}</view>
+    </view>
+
+</view>
+
+<view id="pay">
+
+    <view class="pay-bar" bindtap="clickWechatPay">
+        <image class="hd-img" src="/images/wechat_pay.png"></image>
+        <view class="main">
+            <view>微信支付</view>
+            <view class="main-subtitle">微信安全支付</view>
+        </view>
+        <image class="ft-arrow" src="/images/icon_arrow.png" mode="widthFix"></image>
+    </view>
+
+    <view class="pay-bar" bindtap="clickBalancePay">
+        <image class="hd-img" src="/images/money.png"></image>
+        <view class="main">
+            <view>余额支付</view>
+            <view class="main-subtitle">
+                <text>当前余额：</text>
+                <text class="money">￥{{loadData.user_money}}</text>
+            </view>
+        </view>
+        <image class="ft-arrow" src="/images/icon_arrow.png" mode="widthFix"></image>
+    </view>
+
+</view>
+
+</view>

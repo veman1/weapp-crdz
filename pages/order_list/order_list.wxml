@@ -1,0 +1,61 @@
+<view class="class-tab">
+  <text bindtap="tabClick" data-index="{{ 0 }}" class="tab {{ tab === 0 ? 'select' : '' }}">全部</text>
+  <text bindtap="tabClick" data-index="{{ 1 }}" class="tab {{ tab === 1 ? 'select' : '' }}">待支付</text>
+  <text bindtap="tabClick" data-index="{{ 2 }}" class="tab {{ tab === 2 ? 'select' : '' }}">待发货</text>
+  <text bindtap="tabClick" data-index="{{ 3 }}" class="tab {{ tab === 3 ? 'select' : '' }}">待收货</text>
+  <text bindtap="tabClick" data-index="{{ 4 }}" class="tab {{ tab === 4 ? 'select' : '' }}">已完成</text>
+</view>
+
+<view class="order-item" wx:for="{{orders}}" wx:for-index="order">
+  <text class="orderStatus">{{item.order_status_desc}}</text>
+  <view class="view-title">
+    <text>订单号: {{item.order_sn}}</text>
+  </view>
+  <view wx:for="{{item.goods_list}}" wx:for-item="mapping" class="carts-item" bindtap="details" data-index="{{index}}" data-order="{{order}}">
+    <view>
+      <!-- 缩略图 -->
+      <image class="carts-image" src="{{mapping.image}}" mode="aspectFill" />
+    </view>
+    <view class="carts-text">
+      <!-- 商品标题 -->
+      <text class="carts-title">{{mapping.goods_name}}</text>
+      <view class="carts-subtitle">
+        <!-- 规格 -->
+        <text>{{mapping.spec_key_name}}</text>
+      </view>
+    </view>
+    <view class="carts-right">
+      <text class="carts-price">￥{{mapping.member_goods_price}}</text>
+      <text class="carts-num">x{{mapping.goods_num}}</text>
+    </view>
+  </view>
+  <view class="order-footer">
+    <view class="sum">
+      <text>合计：</text>
+      <text class="hl">￥{{item.order_amount}}</text>
+    </view>
+    <view class="btns">
+      <block wx:if="{{ item.cancel_btn }}">
+        <text class="btn btn-cancel" data-index="{{order}}" bindtap="cancel">取消订单</text>
+      </block>
+      <block wx:if="{{ item.pay_btn }}">
+        <text class="btn btn-pay btn-pay-pink" data-index="{{order}}" bindtap="pay">去付款</text>
+      </block>
+      <block wx:if="{{ item.receive_btn }}">
+        <text class="btn btn-pay btn-pay-pink" data-index="{{order}}" bindtap="pay">去付款</text>
+      </block>
+      <block wx:if="{{ item.comment_btn }}">
+        <text class="btn btn-pay" data-index="{{order}}" bindtap="comment">评价</text>
+      </block>
+      <block wx:if="{{ item.return_btn }}">
+        <text class="btn btn-pay" data-index="{{item.order_id}}" bindtap="clickToReturn">申请退换</text>
+      </block>
+    </view>
+  </view>
+
+</view>
+
+<view wx:if="{{orders.length == 0}}" class="view-tint">
+  <image src="/images/hint_empty.png" mode="widthFix"></image>
+  <text>亲,没有数据</text>
+</view>

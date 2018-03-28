@@ -1,10 +1,16 @@
-/*2018.03.14*/
+/*2018.03.28*/
 .padding { padding: 20rpx; }
 .padding30 { padding: 30rpx; }
 .padding-top { padding-top: 20rpx; }
+.padding-bottom { padding-bottom: 20rpx; }
+
 .margin-top { margin-top: 20rpx; }
+.margin-left { margin-left: 20rpx; }
+.margin-right { margin-right: 20rpx; }
+
 .border-top { border-top: 1px solid #eee; }
 .border-bottom { border-bottom: 1px solid #eee; }
+
 .text-right { text-align: right; }
 .bg-white { background-color: #ffffff; }
 .overflow-hidden { overflow: hidden; }

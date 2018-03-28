@@ -4,11 +4,6 @@
     <view class="userbox">
         <image class="userbox__img" src="{{avatarUrl}}" />
         <view class="userbox__title">{{nickName}}</view>
-        <view class="userbox__subtitle">
-            <template wx:if="{{ true }}" is="vipbox-copper" data="{{ discount }}" />
-            <template wx:if="{{ false }}" is="vipbox-copper" data="{{ discount }}" />
-            <template wx:if="{{ false }}" is="vipbox-copper" data="{{ discount }}" />
-        </view>
     </view>
 </template>
 
@@ -16,25 +11,10 @@
     <view class="g-userbox">
         <template is="userbox" data="{{...userInfo,discount:9}}" />
     </view>
-    <view class="g-infolist">
-        <view class="infobox">
-            <view class="infobox__value">88.5</view>
-            <view class="infobox__key">账户余额</view>
-        </view>
-        <view class="infobox">
-            <view class="infobox__value">80</view>
-            <view class="infobox__key">剩余积分</view>
-        </view>
-    </view>
-</view>
-
-<view hidden class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" bindtap="chooseImage"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
 </view>
 
 <view class="order-area">
-    <navigator hover-class='none' url="/pages/order/list/list" class="header">
+    <navigator hover-class='none' url="/pages/order_list/order_list" class="header">
         <text class="hd">查看订单</text>
         <view class="ft">
             <text>查看全部</text>
@@ -43,7 +23,7 @@
     </navigator>
     <view class="list">
         <block wx:for="{{ nav_list }}">
-            <navigator class="order" hover-class='none' url="/pages/order/list/list?item={{ index + 1 }}">
+            <navigator class="order" hover-class='none' url="/pages/order_list/order_list?item={{ index + 1 }}">
                 <image src="{{ item.img }}" style="width:70rpx;height:70rpx;" />
                 <text>{{ item.text }}</text>
             </navigator>
@@ -55,9 +35,9 @@
     <block wx:for="{{ menu_list }}">
         <navigator class="item" url="{{ item.url }}" open-type='{{ item.open_type }}' hover-class='none'>
             <text>{{ item.text }}</text>
-            <image class="arrow" src="/images/icon_arrow.png" mode="widthFix"></image>
+            <image class="arrow" src="/images/public_arrow.png" mode="widthFix"></image>
         </navigator>
     </block>
 </view>
 
-<image id="footer-tech" src="/images/ws_logo.png" mode="widthFix"></image>
+<image id="footer-tech" src="/images/public_footer_ws.png" mode="widthFix"></image>

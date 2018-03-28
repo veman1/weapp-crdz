@@ -4,8 +4,8 @@
 
 <view class="bottom">
   <view class="bottom-icon" bindtap="addCollect" data-id="{{goods.goods.goods_id}}">
-    <image wx:if="{{ is_collection }}" src="/images/detail_collect_n.png" mode="aspectFit"></image>
-    <image wx:else src="/images/detail_collect_c.png" mode="aspectFit"></image>
+    <image wx:if="{{ goods.goods.is_collection == 1 }}" src="/images/detail_collect_c.png" mode="aspectFit"></image>
+    <image wx:else src="/images/detail_collect_n.png" mode="aspectFit"></image>
     <text>收藏</text>
   </view>
   <view class="bottom-icon">

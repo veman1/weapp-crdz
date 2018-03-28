@@ -2,7 +2,7 @@
 
     <block wx:for="{{ lists }}">
 
-        <navigator class="item" hover-class="none" url="../detail/detail?goods_id={{ item.id }}&user_id={{user_id}}">
+        <navigator class="item" hover-class="none" url="/pages/group_goods_detail/group_goods_detail?goods_id={{ item.id }}&user_id={{user_id}}">
 
             <image class="thumb" src="{{ item.thumb }}"></image>
 

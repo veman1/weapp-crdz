@@ -1,0 +1,67 @@
+/* pages/goods/detail_comment/detail_comment.wxss */
+@import '/template/to_top_btn/to_top_btn';
+
+/* # 评论列表 */
+.commentItem {
+  padding: 15rpx 20rpx;
+  border-bottom: 1rpx solid #EAE4F3;
+}
+.comment-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-headline-left image{
+  vertical-align: middle;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin-right: 15rpx;
+}
+.comment-headline-left text{
+  display: inline-block;
+  color: #BFBFBF;
+  line-height: 50rpx;
+}
+.comment-headline-right {
+  color: #BFBFBF;
+  font-size: 24rpx;
+}
+.commentItem>text {
+  display: block;
+  font-size: 26rpx;
+  line-height: 50rpx;
+  margin-left: 10rpx;
+}
+.commentItem .imgs {
+  
+}
+.commentItem .imgs image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 10rpx;
+}
+
+.comment-ifNone {
+  padding: 25rpx 0;
+}
+.comment-ifNone image {
+  display: block;
+  width: 200rpx;
+  margin: auto;
+}
+.comment-ifNone text {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+/* # 加载仲提示 */
+.loading {
+  text-align: center;
+  font-size: .5rem;
+  color: #ccc;
+  margin: .5rem 0; 
+}

@@ -1,0 +1,113 @@
+<scroll-view scroll-x class="tabs">
+  <view class="tab {{ tab === 'waitpay' ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 'waitpay' }}">待付款</view>
+  <view class="tab {{ tab === 0 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 0 }}">正在拼团</view>
+  <view class="tab {{ tab === 1 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 1 }}">拼团成功</view>
+  <view class="tab {{ tab === 4 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 4 }}">已付款</view>
+  <view class="tab {{ tab === 2 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 2 }}">待收货</view>
+  <view class="tab {{ tab === 3 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ 3 }}">已完成</view>
+  <view class="tab {{ tab === -1 ? 'current' : '' }}" bindtap="clickTab" data-tab="{{ -1}}">拼团失败</view>
+</scroll-view>
+
+<block wx:if="{{tab === 'waitpay'}}">
+  <view class="list">
+    <block wx:for="{{ loadData }}">
+      <view class="item">
+        <view class="hd">待付款</view>
+        <view class="goods">
+          <image class="img" src="{{item.thumb}}"></image>
+          <view class="title">{{item.title}} </view>
+          <view class="subtitle">拼团人数:{{item.groupnum}}</view>
+          <view class="subtitle">{{item.createtime}}</view>
+          <view class="price" style='color:#ff4948'>￥{{ item.groupsprice }}</view>
+          <view class="num">×{{ item.goodsnum }}</view>
+        </view>
+
+        <view class="sum">
+          <text>实付：<text style='color:#ff4948'>￥{{item.money}}</text></text>
+          <text wx:if="{{ item.freight < 0 }}">(免运费)</text>
+          <text wx:else> 运费:<text style='color:#ff4948'>{{item.freight}}</text></text>
+        </view>
+
+        <view class="btns">
+          <view class="btn" bindtap="clickPay" data-id="{{item.id}}">立即付款</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+<block wx:else>
+  <view class="list">
+    <block wx:for="{{ loadData }}">
+      <view class="item">
+        <view class="hd" wx:if="{{item.success == 'waitpay'}}">待付款</view>
+        <view class="hd" wx:if="{{item.success == '0' && item.is_team == 1 &&  tab != 4 }}">正在拼团</view>
+        <view class="hd" wx:if="{{tab == 4}}">已付款</view>
+        <view class="hd" wx:if="{{item.success == '1' && item.status == '1'}}">拼团成功</view>
+         <view class="hd" wx:if="{{item.success == '1' && item.status == '2'}}">待收货</view>
+          <view class="hd" wx:if="{{item.success == '1' && item.status == '3'}}" style='color:#04ab02'>已完成</view>
+        <view class="hd" wx:if="{{item.success == '-1'}}">拼团失败</view>
+        <view class="hd" wx:if="{{item.success == '2'}}">待收货</view>
+        <view class="hd" wx:if="{{item.success == '3'}}">已完成</view>
+
+        <view class="goods">
+          <image class="img" src="{{item.thumb}}"></image>
+          <view class="title">{{item.title}} </view>
+          <view class="subtitle"  wx:if="{{item.is_team  == 1}}" >拼团人数:{{item.groupnum}}</view>
+           <view class="subtitle"  wx:if="{{item.is_team  == 0}}" >单独购买</view>
+          <view class="subtitle">{{item.createtime}}</view>
+          <view class="price" style='color:#ff4948'>￥{{ item.groupsprice }}</view>
+          <view class="num">×{{ item.goodsnum }}</view>
+        </view>
+
+        <view class="sum">
+          <text>实付：<text style='color:#ff4948'>￥{{item.money}}</text></text>
+          <text wx:if="{{ item.freight < 0 }}">(免运费)</text>
+          <text wx:else> 运费:<text style='color:#ff4948'>{{item.freight}}</text></text>
+        </view>
+
+        <view class="btns">
+          <!-- 未付款的订单不显示查看详情按钮 -->
+          <view wx:if="{{item.success == '1' && item.status == '2' || item.is_team == '0' && item.status == '2'}}" class="btn" style='background:#ff8507'  bindtap="sendok" data-id="{{item.teamid}}" data-order="{{item.id}}">确定收货</view>
+          <view  wx:if="{{item.is_team  == 1}}"class="btn" bindtap="clickDetail" data-id="{{item.teamid}}" data-order="{{item.id}}">查看拼团详情</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+
+<!-- <view class="list">
+  <block wx:for="{{ loadData }}">
+    <view class="item">
+      <view class="hd" wx:if="{{item.success == '0'}}">正在拼团</view>
+      <view class="hd" wx:if="{{item.success == '1'}}">拼团成功</view>
+      <view class="hd" wx:if="{{item.success == '-1'}}">拼团失败</view>
+
+      <view class="goods">
+        <image class="img" src="{{item.thumb}}"></image>
+
+        <view class="title">{{item.title}} </view>
+
+        <view class="subtitle">规格 规格 规格 规格 </view>
+
+        <view class="price">￥{{ '1' }}</view>
+
+        <view class="num">×{{ '1' }}</view>
+      </view>
+
+      <view class="sum">
+        <text>实付：￥{{ '1' }}</text>
+        <text wx:if="{{ true }}">(免运费)</text>
+      </view>
+
+      <view class="btns">
+        <view class="btn" bindtap="clickDetail">查看拼团详情</view>
+      </view>
+    </view>
+  </block>
+</view> -->
+
+<!-- # 没有结果提示 -->
+<view wx:if="{{ loadData.length <= 0}}" class="view-empty">
+  <image src='/images/public_null.png' style='width:100rpx;height:100rpx;text-align:center;margin:auto'></image>
+  <text>暂时没有拼团信息!</text>
+</view>

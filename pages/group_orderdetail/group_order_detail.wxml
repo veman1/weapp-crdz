@@ -1,0 +1,75 @@
+<!-- # 商品 -->
+<view id="main">
+  <view class="goods">
+    <swiper indicator-dots indicator-active-color='#FF756A' indicator-color='#eee'>
+      <block wx:for="{{ loadData.goods.gallery }}">
+        <swiper-item>
+          <image class="swiper-img" src="{{ item }}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="name">{{ loadData.goods.title }}</view>
+    <view class="price-box">
+      <text class="price">拼团价￥{{ loadData.goods.groupsprice }}</text>
+      <text wx:if="{{ loadData.goods.freight <= 0 }}" class="shipping_free">免运费</text>
+      <text wx:else class="shipping_free">运费:{{loadData.goods.freight }}元</text>
+    </view>
+    <view wx:if="{{loadData.goods.success == 0}}" class="remain_time">还剩 {{ remain_time }} 结束</view>
+    <!-- 待发货 -->
+     <view wx:if="{{ loadData.goods.success == 1 }}" class="remain_time">拼团成功，待发货</view> 
+    <!-- 已发货 -->
+     <view wx:if="{{ loadData.goods.success == 2 }}" class="remain_time">拼团成功，已发货</view> 
+    <view wx:if="{{ loadData.goods.success == 3 }}" class="remain_time over">已结束</view>
+  </view>
+
+  <!-- 缺少的人数 = 成团所需人数 - 已参团人数 -->
+  
+  <view class="msg" wx:if="{{loadData.goods.success == '0'}}">还差{{ loadData.goods.groupnum - 1 - loadData.teamid_lists.length }}人成团</view>
+
+  <view class="members">
+    <view class="member">
+      <image src="{{loadData.team.head_pic}}"></image>
+      <text class="isLeader">团长</text>
+    </view>
+
+    <view class="member" wx:for="{{loadData.teamid_lists}}">
+      <image src="{{item.head_pic}}"></image>
+    </view>
+
+    <block wx:for="{{loadData.goods.numarr}}">
+      <view class="none"></view>
+    </block>
+  </view>
+</view>
+
+<!-- #地址信息 （拼团成功） -->
+<view id="addrbox" wx:if="{{loadData.goods.success == '1'}}">
+  <view class="item">
+    <text class="hd">收货人</text>
+    <text class="bd">{{loadData.goods.address.consignee}} {{loadData.goods.address.mobile}}</text>
+  </view>
+  <view class="item">
+    <text class="hd">收货地址</text>
+    <text class="bd">{{loadData.goods.address.address}}</text>
+  </view>
+</view>
+
+<!-- 底部按钮 -->
+<block wx:if="{{loadData.goods.success == '1'}}">
+  <view class="fixbottom" bindtap="clickToHome">
+    <text class="btn">返回首页</text>
+  </view>
+</block>
+
+<block wx:if="{{loadData.goods.success == 0}}">
+
+  <view wx:if="{{ loadData.team.user_id == user_id }}" class="fixbottom">
+    <text class="btn">喊人参团</text>
+    <button class="share" open-type='share'></button>
+  </view>
+
+  <view wx:else class="fixbottom">
+    <text class="btn" bindtap="clickJoin">我要参团</text>
+  </view>
+
+</block>

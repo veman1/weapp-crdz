@@ -1,1 +1,276 @@
-/* pages/cart/cart.wxss */
+
+/* # 没有商品提示 .view-empty */
+.view-empty {
+  width: 750rpx;
+  height: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-empty image {
+  width: 200rpx;
+}
+
+.view-empty text {
+  font-size: 32rpx;
+
+  margin-top: 30rpx;
+}
+
+/*外部容器*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.btn {
+  font-size: 29rpx;
+  color: #F35150;
+  margin-top: 100rpx;
+  border-radius: 6rpx;
+  padding: 25rpx 150rpx 25rpx 150rpx;
+  border: 2rpx solid #F35150;
+}
+
+
+/*整体列表*/
+
+.carts-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.carts-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 240rpx;
+  width: 710rpx;
+  border-bottom: 1rpx solid #eee;
+  margin: 0 auto;
+}
+
+/* 复选框 */
+
+.checkBoxArea {
+  height: 180rpx;
+  width: 20px;
+}
+
+.checkBoxArea icon {
+  margin-top: 62rpx;
+}
+
+/* 缩略图 */
+
+.carts-image {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 3px;
+}
+
+.carts-item-title {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding: 18rpx 0;
+  align-items: center;
+}
+
+.carts-item-title image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.carts-item-title text {
+  font-size: 30rpx;
+  color: #000;
+  margin-left: 14rpx;
+}
+
+.carts-text {
+  overflow: hidden;
+  width: 334rpx;
+  height: 180rpx;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.carts-right {
+  height: 180rpx;
+  width: 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.carts-right .price {
+  color: #F35150;
+}
+
+.carts-title {
+  font-size: 26rpx;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.carts-key-name {
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+  color: #999;
+  white-space: nowrap;
+}
+
+/*右下部分价格与数量*/
+
+.carts-subtitle {
+  font-size: 25rpx;
+  color: darkgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/*价格*/
+
+.carts-price {
+  color: #f60;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/*商品加减按钮*/
+
+/*stepper容器*/
+
+.stepper {
+  overflow: hidden;
+}
+
+/* 加减号 */
+
+.stepper text {
+  width: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  float: left;
+  font-size: 28rpx;
+  color: #a7a7a7;
+  background: #FFFFFF;
+  border-top-left-radius: 5rpx;
+  border-bottom-left-radius: 5rpx;
+  border: 1rpx solid #ccc;
+  border-right: 0;
+}
+
+.stepper text.right {
+  background: #FFFFFF;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  border-top-right-radius: 5rpx;
+  border-bottom-right-radius: 5rpx;
+  border-right: 1rpx solid #ccc;
+  border-left: 0;
+}
+
+/*数值*/
+
+.stepper>input {
+  float: left;
+  color: black;
+  font-size: 24rpx;
+   line-height: 50rpx; 
+  width: 50rpx;
+  height: 50rpx;
+  min-height: 0;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+/*普通样式*/
+
+.stepper .normal {
+  color: black;
+}
+
+/*禁用样式*/
+
+.stepper .disabled {
+  color: #ccc;
+}
+
+/*底部按钮*/
+
+.carts-footer {
+  width: 100%;
+  height: 170rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  border-top: 1px solid #eee;
+  background: white;
+}
+.carts-footer .selectAllBox {
+  position: absolute;
+  left: 20rpx;
+  top: 10rpx;
+}
+.carts-footer .selectAllBox text{
+  font-size: 28rpx;
+}
+.carts-footer .carts-footer-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+}
+.carts-footer .carts-footer-left .total {
+  color: #F35150;
+}
+
+.carts-footer .button {
+  line-height: 95rpx;
+  text-align: center;
+  width: 95%;
+  height: 95rpx;
+  background-color: #F35150;
+  color: white;
+  font-size: 28rpx;
+  border-radius: 5rpx;
+  border: 0;
+}
+
+.text-price {
+  font-size: 27rpx;
+  color: #999;
+  background-size: 160% 100%;
+  text-decoration-line: line-through;
+}
+
+.text-red {
+  font-size: 27rpx;
+  color: #de3d96;
+}
+
+.image-delete {
+  width: 40rpx;
+}

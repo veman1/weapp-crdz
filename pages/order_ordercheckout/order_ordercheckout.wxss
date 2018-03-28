@@ -1,0 +1,60 @@
+
+page {
+    background-color: #F3F3F3;
+}
+
+#panel {
+    margin: 20rpx 0 0;    
+}
+#panel .bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 30rpx;
+    border-bottom: 1px solid #eee;
+}
+#panel .bar .hd {
+    color: #999;
+}
+#panel .bar .sum {
+    color: #FF5555;
+}
+
+#pay {
+    margin: 20rpx 0 0;
+}
+#pay .pay-bar {
+    position: relative;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20rpx 0 20rpx 140rpx;
+    height: 140rpx;
+    border-bottom: 1px solid #eee;
+}
+#pay .pay-bar .hd-img {
+    position: absolute;
+    top: 20rpx;
+    left: 20rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+#pay .pay-bar .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-left: 1px solid #eee;
+    height: 100%;
+    padding: 0 0 0 20rpx;
+}
+#pay .pay-bar .main .main-subtitle {
+    color: #999;
+}
+#pay .pay-bar .main .main-subtitle .money {
+    color: #f55;
+}
+#pay .pay-bar .ft-arrow {
+    position: absolute;
+    width: 15rpx;
+    top: 40%;
+    right: 20rpx;
+}

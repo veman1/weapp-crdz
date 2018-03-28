@@ -221,14 +221,14 @@ app.Page({
   clickBottomBuy: function () {
     var goods = this.data.goods
     wx.navigateTo({
-      url: '../ordersubmit/ordersubmit?goods_id=' + goods.goods.id + "&type=single",
+      url: '/pages/group_order_submit/group_order_submit?goods_id=' + goods.goods.id + "&type=single",
     });
   },
   //多人拼团
   clickBottomGroup: function () {
     var goods = this.data.goods
     wx.navigateTo({
-      url: '../ordersubmit/ordersubmit?heads=1&goods_id=' + goods.goods.id + "&type=groups",
+      url: '/pages/group_order_submit/group_order_submit?heads=1&goods_id=' + goods.goods.id + "&type=groups",
     });
   },
   // 加入购物车
@@ -328,7 +328,7 @@ app.Page({
   // ！ 点击弹窗里面的拼团
   clickPopupGroup: function () {
     wx.navigateTo({
-      url: '/pages/order/ordersubmit/index',
+      url: '/pages/order_submit/order_submit',
     });
   },
   clickMask: function () {
@@ -342,14 +342,14 @@ app.Page({
   },
   clickMoreComments: function () {
     wx.navigateTo({
-      url: '../detail_comment/detail_comment?id=',
+      url: '/pages/group_goods_detail_comment/group_goods_detail_comment?id=',
     });
   },
 
   clickToGroup: function (e) {
     var teamid = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/group/group_detail/group_detail?heads=0&id=' + teamid,
+      url: '/pages/group_order_detail/group_order_detail?heads=0&id=' + teamid,
     });
   },
 

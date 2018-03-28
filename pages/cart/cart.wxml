@@ -1,2 +1,53 @@
-<!--pages/cart/cart.wxml-->
-<text>pages/cart/cart.wxml</text>
+<view wx:if="{{ empty }}" class="view-empty">
+  <image src="/images/cart.png" mode="widthFix"></image>
+  <text>购物车还是空的</text>
+  <text style='color:#adaaad'>去挑几件中意的商品吧</text>
+  <navigator class="btn" hover-class='none' open-type='switchTab' url="/pages/category/category">去逛逛</navigator>
+</view>
+
+<!-- # 商品列表 -->
+<view wx:if="{{ !empty }}" class="bg-white">
+  <scroll-view scroll-y="true" style="width:100%;height:{{height}}px">
+    <view class="container carts-list">
+
+      <view wx:for="{{carts}}" wx:key="index" class="carts-item">
+        <!-- 复选框 -->
+        <view class="checkBoxArea" bindtap="bindCheckbox" data-index="{{index}}">
+          <icon wx:if="{{item.selected}}" type="success" size="20" color="#F35150" />
+          <icon wx:else type="circle" size="20" />
+        </view>
+
+        <!-- 缩略图 -->
+        <image class="carts-image" src="{{item.image}}" mode="aspectFill" />
+
+        <view class="carts-text">
+          <text class="carts-title">{{item.goods_name}}</text>
+          <text class="carts-key-name">{{item.spec_key_name}}</text>
+          <!-- 数量加减器 -->
+          <view class="stepper">
+            <text class="normal" data-index="{{index}}" bindtap="bindMinus">-</text>
+            <input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.goods_num}}" />
+            <text class="normal right" data-index="{{index}}" bindtap="bindPlus">+</text>
+          </view>
+        </view>
+
+        <view class="carts-right">
+          <image mode="widthFix" bindtap="deleteCart" data-index="{{index}}" class="image-delete" src="/images/public_del.png"></image>
+          <text class="price">￥{{item.member_goods_price}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="carts-footer">
+    <view class="selectAllBox" bindtap="bindSelectAll">
+      <icon wx:if="{{selectedAllStatus}}" type="success" size="20" color="#F35150"/>
+      <icon wx:else type="circle" size="20"/>
+      <text> 全选</text>
+    </view>
+    <view class="carts-footer-left">
+      总计:<text class="total">￥{{ total ? total : '0' }}</text>
+    </view>
+    <view class="button" bindtap="bindCheckout">立即结算</view>
+  </view>
+</view>

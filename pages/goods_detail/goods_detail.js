@@ -7,7 +7,6 @@ app.Page({
     goods: {},
     avtive: [],
     goods_num: 1,
-    collected: false,
   },
   onLoad(o) {
     var goods_id = o.goods_id;
@@ -46,12 +45,11 @@ app.Page({
   addCollect: function (e) {
     var goods_id = e.currentTarget.dataset.id;
     var user_id = getApp().globalData.userInfo.user_id
-    var ctype = 0;
-    var that = this;
-    app.server.getJSON('/Goods/collectGoods/user_id/' + user_id + "/goods_id/" + goods_id + "/type/" + ctype, function (res) {
+    var ctype = Number(this.data.goods.goods.is_collection);
+    app.server.getJSON('/Goods/collectGoods/user_id/' + user_id + "/goods_id/" + goods_id + "/type/" + ctype, (res) => {
       // 如果成功返回，就转换图标
       if (res.data.status == 1) {
-        that.setData({ collected: true });
+        this.setData({ 'goods.goods.is_collection': String((ctype + 1) % 2) })
       }
       wx.showToast({ title: res.data.msg, icon: 'success', duration: 2000 })
     });
@@ -279,7 +277,6 @@ app.Page({
           duration: 2000
         });
     });
-    return;
     this.setData({
       popup_show: false
     });

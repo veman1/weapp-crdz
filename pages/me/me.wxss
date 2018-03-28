@@ -5,79 +5,28 @@ page {
 }
 
 .g-header {
-    background-image: linear-gradient(to right,#FF9994 0,#FD657C 100%);
+    background-color: #20232C;
     overflow: hidden;
+    padding-bottom: 30rpx;
 }
 .g-userbox {
     margin-top: 30rpx;
     padding: 0 30rpx;
 }
-.g-infolist {
-    display: flex;
-    justify-content: space-around;
-}
 
 .userbox {
+  display: flex;
+  align-items: center;
     position: relative;
     min-height: 100rpx;
-    padding: 0 0 0 100rpx;
     color: #fff;
+    font-size: 1.2em;
 }
 .userbox__img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 80rpx;
     height: 80rpx;
     border-radius: 50%;
-}
-.userbox__title {
-    font-size: 1.2em;
-}
-.userbox__subtitle {
-    display: flex;
-    margin-top: 10rpx;
-}
-
-.infobox {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 30rpx;
-    width: 250rpx;
-    height: 80rpx;
-    background-color: #FEB2B2;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: #630000;
-}
-.infobox__value {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-.infobox__key {}
-
-/*user info*/
-
-.userinfo {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 300rpx;
-}
-
-.userinfo-avatar {
-  width: 150rpx;
-  height: 150rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-  border: 3px #ffffff solid;
-}
-
-.userinfo-nickname {
-  color: #000000;
-  font-size: 28rpx;
+    margin-right: 1em;
 }
 
 /* # 查看订单 .order-area */

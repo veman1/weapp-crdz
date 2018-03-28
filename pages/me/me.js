@@ -21,66 +21,32 @@ Page({
     ],
     menu_list: [
       {
-        text: '我的钱包',
-        url: '/pages/money/money',
-        open_type: 'navigate'
-      },
-      {
-        text: '我的积分',
-        url: '/pages/points/points',
-        open_type: 'navigate'
-      },
-      {
         text: '我的订单',
-        url: '/pages/order/list/list',
+        url: '/pages/order_list/order_list',
         open_type: 'navigate'
       },
       {
         text: '我的拼团',
-        url: '/pages/member/myGroup/myGroup',
-        open_type: 'navigate'
-      },
-      {
-        text: '我的砍价',
-        url: '/pages/cutprice/my/my',
+        url: '/pages/group_my/group_my',
         open_type: 'navigate'
       },
       {
         text: '我的收藏',
-        url: '/pages/member/collect/collect',
+        url: '/pages/collect/collect',
         open_type: 'navigate'
       },
       {
         text: '地址管理',
-        url: '/pages/address/list/list',
-        open_type: 'navigate'
-      },
-      {
-        text: '分销中心',
-        url: '/pages/member/distribution/index/index',
-        open_type: 'navigate'
-      },
-      {
-        text: '优惠卷',
-        url: '/pages/member/coupon/index',
-        open_type: 'navigate'
-      },
-      {
-        text: '免费入驻',
-        url: '/pages/seller/add',
+        url: '/pages/address_list/address_list',
         open_type: 'navigate'
       }
     ],
   },
   onShow: function () {
-    wx.getUserInfo({
-      success: ({ userInfo }) => {
-        this.setData({
-          userInfo,
-        });
-      }
+    !this.data.userInfo && wx.getUserInfo({
+      success: ({ userInfo }) => this.setData({ userInfo })
     });
-  },
+  }
 })
 
 

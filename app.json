@@ -2,11 +2,25 @@
   "pages": [
     "pages/index/index",
     "pages/category/category",
-    "pages/group-buy/group-buy",
     "pages/cart/cart",
     "pages/me/me",
     "pages/goods_detail/goods_detail",
-    "pages/goods_detail_group/goods_detail_group",
+    "pages/group_index/group_index",
+    "pages/group_goods_detail/group_goods_detail",
+    "pages/group_goods_detail_comment/group_goods_detail_comment",
+    "pages/group_order_detail/group_order_detail",
+    "pages/group_order_submit/group_order_submit",
+    "pages/checkout/checkout",
+    "pages/order_submit/order_submit",
+    "pages/order_list/order_list",
+    "pages/address_list/address_list",
+    "pages/address_add/address_add",
+    "pages/address_edit/address_edit",
+    "pages/address_select/address_select",
+    "pages/order_ordercheckout/order_ordercheckout",
+    "pages/group_my/group_my",
+    "pages/payment/payment",
+    "pages/collect/collect",
     "pages/try/try"
   ],
   "window": {
@@ -33,7 +47,7 @@
         "text": "分类"
       },
       {
-        "pagePath": "pages/group-buy/group-buy",
+        "pagePath": "pages/group_index/group_index",
         "iconPath": "images/tabbar_bag_n.png",
         "selectedIconPath": "images/tabbar_bag_s.png",
         "text": "团购"

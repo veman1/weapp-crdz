@@ -67,9 +67,14 @@ page {
 }
 
 .title-box .title {
+  position: relative;
     padding: 20rpx;
 }
-
+.title-pull-right {
+  position: absolute;
+  top: 10rpx;
+  right: 25rpx;
+}
 .title-box .title .goods_name {
     font-size: 30rpx;
 }
@@ -698,5 +703,12 @@ page {
     background-color: #f35150;
 }
 
- 
-
+.u-icon {
+  width: 2.2em;
+  text-align: center;
+  color: #655555;
+}
+.u-icon>image {
+  width: 2.2em;
+  height: 2.2em;
+}
