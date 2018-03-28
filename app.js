@@ -10,6 +10,9 @@ App({
   },
   server: new Server('https://chao.woshangfw.cn/WXAPI'),
 
+  globalData: {
+  },
+
   Page(obj) {
     Page(new PageConfig(obj))
   },
@@ -58,7 +61,7 @@ App({
   register(openid) {
     var app = this;
     wx.getUserInfo({
-      success({userInfo}) {
+      success({ userInfo }) {
         app.server.getJSON('/User/register', {
           open_id: openid,
           country: userInfo.country,
@@ -83,8 +86,10 @@ App({
       wx.hideLoading()
       this.globalData.category = res.data.result
       this.globalData.categoryId = res.data.result[0].id
-      succ && succ(res.data.result)
-    });
+      this.server.getJSON('/Goods/goodsCategoryList?parent_id=84', (res) => {
+        this.globalData.category = res.data.result
+        succ && succ(res.data.result)
+      });
+    })
   }
-
 })
